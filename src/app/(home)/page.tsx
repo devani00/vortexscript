@@ -1,8 +1,24 @@
-import Link from "next/link";
+"use client";
+import { useSearchParam } from "@/hooks/use-search-param";
+import { usePaginatedQuery } from "convex/react";
 
 import  {Navbar} from "./navbar";
+import { DocumentsTable } from "./documents-table";
+import { TemplatesGallery } from "./templates-gallery";
+import { api } from "../../../convex/_generated/api";
+
+
 
 const Home = () => {
+  const [search] = useSearchParam();
+
+  const {
+    results,
+    status,
+    loadMore
+  } = usePaginatedQuery(api.documents.get, { search }, {initialNumItems: 5});
+
+  
   return ( 
     <div className="min-h-screen flex flex-col">
       
@@ -11,9 +27,12 @@ const Home = () => {
       </div>
 
       <div className="mt-16">
-        Click <Link href="/documents/123">
-        <span className="text-blue-500 underline">&nbsp;here&nbsp;</span>
-        </Link> to go to document id
+        <TemplatesGallery />
+        <DocumentsTable
+          documents = {results}
+          loadMore = {loadMore}
+          status = {status}
+        />
       </div>
     </div>
    );
