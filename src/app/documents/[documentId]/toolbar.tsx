@@ -47,8 +47,8 @@ import {
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Value } from "@radix-ui/react-select";
-import TextAlign from "@tiptap/extension-text-align";
+//import { Value } from "@radix-ui/react-select";
+//import TextAlign from "@tiptap/extension-text-align";
 
 const LineHeightButton = () => {
     const { editor } = useEditorStore();
