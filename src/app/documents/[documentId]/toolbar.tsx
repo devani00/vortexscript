@@ -702,7 +702,7 @@ export const Toolbar = ({ onAskAI }: ToolbarProps) => {
                 className="h-6 px-2 flex items-center justify-center rounded-md bg-gradient-to-r from-red-600 to-orange-500 text-white text-sm font-medium hover:from-red-700 hover:via-orange-600 hover:to-blue-950 transition-all duration-200 hover:shadow-md hover:scale-105"
             >
                 <WandSparklesIcon className="size-4 mr-1" />
-                Vortex AI
+                Vortex AI 
             </button>
 
         </div>
