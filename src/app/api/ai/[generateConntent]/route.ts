@@ -26,6 +26,8 @@ Format the output with markdown-like structure:
 - Use "#", "##", "###" for headings.
 - Use bullet points or numbered lists where needed.
 - Keep it clean, readable, and well-organized — ready to be parsed into a rich-text editor.
+- without wrapping it in code blocks.
+- Only return the plain Markdown content.
 `;
 
         const { data } = await axios.post(
