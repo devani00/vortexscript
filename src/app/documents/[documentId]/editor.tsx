@@ -3,7 +3,7 @@
 import {
   forwardRef,
   useImperativeHandle,
-  useState,
+  // useState,
 } from "react";
 
 import Table from '@tiptap/extension-table';
@@ -31,7 +31,8 @@ import { LineHeightExtension } from '@/extensions/line-height';
 import { Threads } from './threads';
 
 import { LEFT_MARGIN_DEFAULT, RIGHT_MARGIN_DEFAULT } from "@/constants/margins";
-import { useVoiceToText } from '@/hooks/usevoiceToText'; // Use your button component or HTML buttons
+// import { useVoiceToText } from '@/hooks/usevoiceToText'; // Make sure this path is correct
+// import { Button } from "@/components/ui/button"; // Use your button component or HTML buttons
 
 interface EditorProps {
   initialContent?: string | undefined;
@@ -51,7 +52,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({ initialContent }, re
   });
 
   const { setEditor } = useEditorStore();
-  const [interimText, setInterimText] = useState("");
+  // const [interimText, setInterimText] = useState("");
 
   const editor = useEditor({
     autofocus: true,
@@ -110,18 +111,18 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({ initialContent }, re
     ],
   });
 
-  const {
-    listening,
-    startListening,
-    stopListening,
-  } = useVoiceToText(
-    (finalText) => {
-      editor?.commands.insertContent(finalText + ' ');
-    },
-    (interim) => {
-      setInterimText(interim);
-    }
-  );
+  // const {
+  //   listening,
+  //   startListening,
+  //   stopListening,
+  // } = useVoiceToText(
+  //   (finalText) => {
+  //     editor?.commands.insertContent(finalText + ' ');
+  //   },
+  //   (interim) => {
+  //     setInterimText(interim);
+  //   }
+  // );
 
   useImperativeHandle(ref, () => ({
     insertAIContent: (text: string) => {
@@ -137,6 +138,23 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({ initialContent }, re
         <EditorContent editor={editor} />
         <Threads editor={editor} />
       </div>
+
+      {/* Interim transcription feedback */}
+      {/* {listening && interimText && (
+        <div className="italic text-gray-600 px-4 mt-2">
+          <span className="text-sm">🗣️ {interimText}</span>
+        </div>
+      )} */}
+
+      {/* Controls */}
+      {/* <div className="flex gap-2 px-4 mt-4">
+        <Button onClick={startListening} disabled={listening}>
+          🎙️ Start Voice
+        </Button>
+        <Button onClick={stopListening} disabled={!listening}>
+          ⏹️ Stop
+        </Button>
+      </div> */}
     </div>
   );
 });
