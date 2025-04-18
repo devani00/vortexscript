@@ -1,5 +1,11 @@
 "use client";
-import { forwardRef, useImperativeHandle } from "react";
+
+import {
+  forwardRef,
+  useImperativeHandle,
+  useState,
+} from "react";
+
 import Table from '@tiptap/extension-table';
 import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
@@ -18,7 +24,6 @@ import TaskList from '@tiptap/extension-task-list';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
-
 import { useStorage } from '@liveblocks/react';
 import { useEditorStore } from '@/store/use-editor-store';
 import { FontSizeExtension } from '@/extensions/font-size';
@@ -26,6 +31,7 @@ import { LineHeightExtension } from '@/extensions/line-height';
 import { Threads } from './threads';
 
 import { LEFT_MARGIN_DEFAULT, RIGHT_MARGIN_DEFAULT } from "@/constants/margins";
+import { useVoiceToText } from '@/hooks/usevoiceToText'; // Use your button component or HTML buttons
 
 interface EditorProps {
   initialContent?: string | undefined;
@@ -45,6 +51,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({ initialContent }, re
   });
 
   const { setEditor } = useEditorStore();
+  const [interimText, setInterimText] = useState("");
 
   const editor = useEditor({
     autofocus: true,
@@ -103,7 +110,19 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({ initialContent }, re
     ],
   });
 
-  // 👇 Expose the `insertAIContent` function to parent components
+  const {
+    listening,
+    startListening,
+    stopListening,
+  } = useVoiceToText(
+    (finalText) => {
+      editor?.commands.insertContent(finalText + ' ');
+    },
+    (interim) => {
+      setInterimText(interim);
+    }
+  );
+
   useImperativeHandle(ref, () => ({
     insertAIContent: (text: string) => {
       if (editor) {
@@ -114,7 +133,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({ initialContent }, re
 
   return (
     <div className="size-full overflow-x-auto bg-[#F9FBFD] print:p-0 print:bg-white print:overflow-visible">
-      <div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
+      <div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0 relative">
         <EditorContent editor={editor} />
         <Threads editor={editor} />
       </div>

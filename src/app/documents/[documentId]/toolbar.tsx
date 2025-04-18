@@ -49,6 +49,7 @@ import {
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import VoiceButton from "./voiceButton";
 //import { Value } from "@radix-ui/react-select";
 //import TextAlign from "@tiptap/extension-text-align";
 
@@ -662,6 +663,7 @@ export const Toolbar = ({ onAskAI }: ToolbarProps) => {
 
     return (
         <div className="bg-[#F1F4F9] px-2.5 py-0.5 rounded-[24px] min-h-[40px] flex items-center gap-x-0.5 overflow-x-auto">
+            
             {sections[0].map((item) => (
                 <ToolBarButton key={item.label} {...item} />
             ))}
@@ -696,14 +698,17 @@ export const Toolbar = ({ onAskAI }: ToolbarProps) => {
             {sections[2].map((item) => (
                 <ToolBarButton key={item.label} {...item} />
             ))}
-
+            <Separator orientation="vertical" className="h-6 bg-neutral-300" />
+            <VoiceButton/>
             <button
                 onClick={onAskAI}
-                className="h-6 px-2 flex items-center justify-center rounded-md bg-gradient-to-r from-red-600 to-orange-500 text-white text-sm font-medium hover:from-red-700 hover:via-orange-600 hover:to-blue-950 transition-all duration-200 hover:shadow-md hover:scale-105"
+                className="h-7 ml-auto px-2 flex items-center justify-center rounded-full bg-gradient-to-r from-red-600 to-orange-500 text-white text-sm font-medium hover:from-red-700 hover:via-orange-600 hover:to-blue-950 transition-all duration-200 hover:shadow-md hover:scale-105"
             >
                 <WandSparklesIcon className="size-4 mr-1" />
                 Vortex AI 
             </button>
+
+            
 
         </div>
     );
