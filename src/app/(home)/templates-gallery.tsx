@@ -1,7 +1,5 @@
 "use client";
 
-
-
 import {
     Carousel,
     CarouselContent,
@@ -17,7 +15,6 @@ import { cn } from "@/lib/utils";
 
 import { api } from "../../../convex/_generated/api";
 import { useState } from "react";
-//import { title } from "process";
 import { toast } from "sonner";
 
 export const TemplatesGallery = () => {
@@ -66,7 +63,7 @@ export const TemplatesGallery = () => {
                                             backgroundPosition: "center",
                                             backgroundRepeat: "no-repeat",
                                         }}
-                                        className="size-full hover:border-blue-500 rounded-sm border hover:bg-blue-50 transition flex flex-col items-center justify-center gap-y-4 bg-white"
+                                        className="size-full hover:border-neutral-950 rounded-sm border hover:bg-blue-50 transition flex flex-col items-center justify-center gap-y-4 bg-white"
                                     />
                                     <p className="text-sm font-medium truncate">
                                             {template.label}

@@ -151,14 +151,14 @@ const Marker = ({
         onMouseDown={onMouseDown}
         onDoubleClick={onDoubleClick}
         >
-            <FaCaretDown className="absolute left-1/2 top-0 h-full fill-blue-500 transform -translate-x-1/2"/>
+            <FaCaretDown className="absolute left-1/2 top-0 h-full fill-neutral-950 transform -translate-x-1/2"/>
             <div
                 className="absolute left-1/2 top-4 transform -translate-x-1/2 duration-150"
                 style={{
                     height: "100vh",
                     width: "1px",
                     transform: "scaleX(0.5)",
-                    backgroundColor: "#3b72F6",
+                    backgroundColor: "#000000",
                     display: isDragging ? "block" : "none",
                 }}
             />

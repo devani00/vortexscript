@@ -21,7 +21,7 @@ export const DocumentRow = ({document}: DocumentRowProps) => {
             className="cursor-pointer"
         >
             <TableCell className="w-[50px]">
-                <SiGoogledocs className="size-6 fill-blue-500"/>
+                <SiGoogledocs className="size-6 fill-neutral-950"/>
             </TableCell>
             <TableCell className="font-medium md:w-[45%]">
                 {document.title}
