@@ -1,4 +1,4 @@
-// Original antonio strucrture
+// Original strucrture
 
 // import { defineSchema, defineTable } from "convex/server";
 // import { v } from "convex/values";
@@ -37,13 +37,29 @@ export default defineSchema({
       filterFields: ["ownerId", "organizationId"],
     }),
 
+notes: defineTable({
+  documentId: v.optional(v.id("documents")),
+  organizationId: v.optional(v.string()),
+  heading: v.optional(v.string()),
+  content: v.string(),
+  color: v.string(),
+  ownerId: v.string(),
+  createdAt: v.number(),
+  updatedAt: v.number(),
+})
+  .index("by_doc_owner", ["documentId", "ownerId"])
+  .index("by_org_owner", ["organizationId", "ownerId"])
+  .index("by_owner_created", ["ownerId", "createdAt"]),
+
   kanbanBoards: defineTable({
     title: v.string(),
     ownerId: v.string(),
     organizationId: v.optional(v.string()),
+    documentId: v.optional(v.id("documents")),
   })
     .index("by_owner_id", ["ownerId"])
-    .index("by_organization_id", ["organizationId"]),
+    .index("by_organization_id", ["organizationId"])
+    .index("by_document_id", ["documentId"]),
 
   kanbanColumns: defineTable({
     boardId: v.id("kanbanBoards"),
@@ -61,23 +77,5 @@ export default defineSchema({
     ownerId: v.string(),
   })
     .index("by_column_id", ["columnId"])
-    .index("by_board_id", ["boardId"])
-    .searchIndex("search_content", {
-      searchField: "content",
-      filterFields: ["boardId", "columnId"],
-    }),
-
-  notes: defineTable({
-    heading: v.optional(v.string()),
-    content: v.string(),
-    color: v.string(),
-    ownerId: v.string(),
-    organizationId: v.optional(v.string()),
-  })
-    .index("by_owner_id", ["ownerId"])
-    .index("by_organization_id", ["organizationId"])
-    .searchIndex("search_content", {
-      searchField: "content",
-      filterFields: ["ownerId", "organizationId"],
-    }),
+    .index("by_board_id", ["boardId"]),
 });
