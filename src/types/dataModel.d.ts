@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 import { Infer, Schema } from "convex/schema";
 import schema from "../schema";
 
