@@ -85,7 +85,7 @@ const VoiceButton: React.FC = () => {
       {!isListening && (
         <Button
         onClick={startListening}
-        className="h-8 w-8 ml-1 p-2 rounded-full bg-white shadow transition-all duration-300 hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 group"
+        className="h-8 w-8 m-1 p-2 rounded-full bg-white shadow transition-all duration-300 hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 group"
       >
         <MicIcon className="w-5 h-5 text-black group-hover:text-white transition-colors duration-200" />
       </Button>

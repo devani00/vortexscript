@@ -50,6 +50,8 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import VoiceButton from "./voiceButton";
+import KanbanFeature from "./KanbanFeature";
+import NotesFeature from "./NotesFeature";
 //import { Value } from "@radix-ui/react-select";
 //import TextAlign from "@tiptap/extension-text-align";
 
@@ -699,7 +701,14 @@ export const Toolbar = ({ onAskAI }: ToolbarProps) => {
                 <ToolBarButton key={item.label} {...item} />
             ))}
             <Separator orientation="vertical" className="h-6 bg-neutral-300" />
+            {/* Voice to speech */}
             <VoiceButton />
+            <Separator orientation="vertical" className="h-6 bg-neutral-300" />
+            {/*Kanban Option */}
+            <KanbanFeature/>
+            {/* Notes Feature */}
+            <NotesFeature/>
+            {/* Content Generation AI Button */}
             <button
                 onClick={onAskAI}
                 className="h-7 ml-auto px-2 flex items-center justify-center rounded-full bg-gradient-to-r from-red-600 to-orange-500 text-white text-sm font-medium hover:from-red-700 hover:via-orange-600 hover:to-blue-950 transition-all duration-200 hover:shadow-md hover:scale-105"
