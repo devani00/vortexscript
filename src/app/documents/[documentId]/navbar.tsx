@@ -241,7 +241,7 @@ export const Navbar = ({data}: NavbarProps) => {
 
                             <MenubarMenu>
                                 <MenubarTrigger className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted h-auto">
-                                    Formate 
+                                    Format
                                 </MenubarTrigger>
                                 <MenubarContent>
                                     <MenubarSub>
